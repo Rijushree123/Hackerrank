@@ -1,0 +1,9 @@
+n,d=input().split()
+n=int(n)
+d=int(d)
+a=list(map(int,input().split()))
+p=a[d:n]+a[0:d]
+a=p
+print(*p,sep=' ')    
+
+    
