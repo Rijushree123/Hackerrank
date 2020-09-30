@@ -1,0 +1,34 @@
+def __contains__(self, val):
+    if val in self:
+        return 1
+    else:
+        return 0
+def add(self,val):
+    self.append(val)
+def remove(self,val):
+    self.remove(val)
+def __len__(self):
+    return len(self)
+
+
+
+q=int(input())
+multiset=[]
+result=[]
+for _ in range(0,q):
+    a=input()
+    if a[-1:].isnumeric():
+        b=int(a[-1:])
+        if a[0:-2]=="query":
+            if __contains__(multiset,b)==1:
+                result.append("True")
+            else:
+                result.append("False")
+        elif a[0:-2]=='add':
+            add(multiset,int(a[-1:]))
+        elif a[0:-2]=="remove":
+            remove(multiset,int(a[-1:]))
+    elif a[0:-2]=="size":
+        result.append(_len_(multiset))
+print(result)
+print(multiset)
