@@ -1,0 +1,50 @@
+from itertools import groupby
+
+def k_sum(k):
+    return (k*(k+1))//2
+
+def substrCount(n, s):
+    case_a = 0
+    case_b = 0
+    for x,y in groupby(s):
+        case_a += k_sum(sum(1 for i in y))
+    for i in range(1,len(s)-1):
+        skip = 1
+        if s[i-skip] == s[i] or s[i+skip] == s[i]:
+            continue
+        match = s[i-skip]
+        while i-skip>-1 and i+skip<len(s) and s[i-skip]==match and s[i+skip]==match:
+            case_b += 1
+            skip += 1
+    return case_a + case_b
+
+n = int(input())
+s = input()
+print(substrCount(n, s))
+                                                              
+                                                              
+                                                              
+                                                              
+                                                              OR
+                                                              (TIME LIMIT WILL EXCEED)
+n=int(input())
+s=input()
+l=[]
+for i in range(1,len(s)+1):
+    for j in range(i,len(s)+1):
+        t=i-1
+        k=s[t:j]
+        li=len(k)
+        
+        p=s[t:li//2]
+        if li==1:
+            l.append(k)
+        elif li%2==0:
+            if k==k[::-1]:
+                l.append(k)
+        else:
+            if k[0:li//2]==k[((li//2)+1):]:
+                l.append(k)
+                
+print(l)
+print(len(l))
