@@ -45,4 +45,3 @@ b=input()
 print(makeAnagram(a, b)) 
       
 # This code is contributed by  
-# ChitraNayal 
