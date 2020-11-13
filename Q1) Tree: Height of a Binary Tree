@@ -1,0 +1,193 @@
+                                                                                                  C
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+
+struct node {
+    
+    int data;
+    struct node *left;
+    struct node *right;
+  
+};
+
+struct node* insert( struct node* root, int data ) {
+		
+	if(root == NULL) {
+	
+        struct node* node = (struct node*)malloc(sizeof(struct node));
+
+        node->data = data;
+
+        node->left = NULL;
+        node->right = NULL;
+        return node;
+	  
+	} else {
+      
+		struct node* cur;
+		
+		if(data <= root->data) {
+            cur = insert(root->left, data);
+            root->left = cur;
+		} else {
+            cur = insert(root->right, data);
+            root->right = cur;
+		}
+	
+		return root;
+	}
+}
+int getHeight(struct node* root) 
+{
+    // Write your code here
+    int leftheight=0;
+    int rightheight=0;
+    if(root->left!=NULL)
+    {
+        leftheight=1+getHeight(root->left);
+    }
+    if (root->right != NULL) {
+        rightheight = 1 + getHeight(root->right);
+    }
+    if(leftheight>rightheight)
+    {
+        return leftheight;
+    }
+    else
+        return rightheight;
+    
+}
+int main() {
+  
+    struct node* root = NULL;
+    
+    int t;
+    int data;
+
+    scanf("%d", &t);
+
+    while(t-- > 0) {
+        scanf("%d", &data);
+        root = insert(root, data);
+    }
+  
+	printf("%d",getHeight(root));
+    return 0;
+}
+
+                                                                                        Java
+import java.util.*;
+import java.io.*;
+
+class Node {
+    Node left;
+    Node right;
+    int data;
+    
+    Node(int data) {
+        this.data = data;
+        left = null;
+        right = null;
+    }
+}
+
+class Solution {
+public static int height(Node root) 
+{
+      	// Write your code here.
+        int leftHeight = 0;
+        int rightHeight = 0;
+
+        if (root.left != null) {
+           leftHeight = 1 + height(root.left);
+        }
+
+        if (root.right != null) {
+            rightHeight = 1 + height(root.right);
+        }
+
+    return leftHeight > rightHeight ? leftHeight : rightHeight;    }
+	public static Node insert(Node root, int data) {
+        if(root == null) {
+            return new Node(data);
+        } else {
+            Node cur;
+            if(data <= root.data) {
+                cur = insert(root.left, data);
+                root.left = cur;
+            } else {
+                cur = insert(root.right, data);
+                root.right = cur;
+            }
+            return root;
+        }
+    }
+
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        int t = scan.nextInt();
+        Node root = null;
+        while(t-- > 0) {
+            int data = scan.nextInt();
+            root = insert(root, data);
+        }
+        scan.close();
+        int height = height(root);
+        System.out.println(height);
+    }	
+}
+
+                                                                                      Python
+class Node:
+    def __init__(self, info): 
+        self.info = info  
+        self.left = None  
+        self.right = None 
+        self.level = None 
+
+    def __str__(self):
+        return str(self.info) 
+
+class BinarySearchTree:
+    def __init__(self): 
+        self.root = None
+
+    def create(self, val):  
+        if self.root == None:
+            self.root = Node(val)
+        else:
+            current = self.root
+         
+            while True:
+                if val < current.info:
+                    if current.left:
+                        current = current.left
+                    else:
+                        current.left = Node(val)
+                        break
+                elif val > current.info:
+                    if current.right:
+                        current = current.right
+                    else:
+                        current.right = Node(val)
+                        break
+                else:
+                    break
+# Enter your code here. Read input from STDIN. Print output to STDOUT
+def height(root):
+    if not root:
+        return -1
+    return max(height(root.left), height(root.right)) + 1
+
+
+tree = BinarySearchTree()
+t = int(input())
+
+arr = list(map(int, input().split()))
+
+for i in range(t):
+    tree.create(arr[i])
+
+print(height(tree.root))
