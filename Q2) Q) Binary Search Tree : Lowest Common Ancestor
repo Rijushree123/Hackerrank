@@ -1,0 +1,143 @@
+C
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+
+struct node {
+    
+    int data;
+    struct node *left;
+    struct node *right;
+  
+};
+
+struct node* insert( struct node* root, int data ) {
+		
+	if(root == NULL) {
+	
+        struct node* node = (struct node*)malloc(sizeof(struct node));
+
+        node->data = data;
+
+        node->left = NULL;
+        node->right = NULL;
+        return node;
+	  
+	} else {
+      
+		struct node* cur;
+		
+		if(data <= root->data) {
+            cur = insert(root->left, data);
+            root->left = cur;
+		} else {
+            cur = insert(root->right, data);
+            root->right = cur;
+		}
+	
+		return root;
+	}
+}
+/* you only have to complete the function given below.  
+node is defined as  
+
+struct node {
+    
+    int data;
+    struct node *left;
+    struct node *right;
+  
+};
+
+*/
+struct node *lca( struct node *root, int v1, int v2 )
+{
+    if (root == NULL) 
+            return NULL; 
+   
+        // If both n1 and n2 are smaller than root, then LCA lies in left 
+        if (root->data > v1 && root->data > v2) 
+            return lca(root->left, v1, v2); 
+   
+        // If both n1 and n2 are greater than root, then LCA lies in right 
+        if (root->data < v1 && root->data < v2)  
+            return lca(root->right, v1, v2); 
+   
+        return root; 
+}	
+
+int main() {
+  
+    struct node* root = NULL;
+    
+    int t;
+    int data;
+
+    scanf("%d", &t);
+
+    while(t-- > 0) {
+        scanf("%d", &data);
+        root = insert(root, data);
+    }
+  	int v1;
+  	int v2;
+  
+  	scanf("%d%d", &v1, &v2);
+	struct node *ans = lca(root, v1, v2);
+  	printf("%d", ans->data);
+  	
+    return 0;
+}
+					Python
+class Node:
+    def __init__(self, info):
+        self.info = info  
+        self.left = None  
+        self.right = None 
+        self.level = None 
+
+    def __str__(self):
+        return str(self.info) 
+
+def preOrder(root):
+    if root == None:
+        return
+    print (root.info, end=" ")
+    preOrder(root.left)
+    preOrder(root.right)
+    
+class BinarySearchTree:
+    def __init__(self): 
+        self.root = None
+#Node is defined as
+#self.left (the left child of the node)
+#self.right (the right child of the node)
+#self.info (the value of the node)
+    def insert(self, val):
+        if not self.root:
+            self.root = Node(val)
+        else:
+            node = self.root
+            while(True):
+                if (node.info>val):
+                    if node.left:
+                        node = node.left
+                    else:
+                        node.left = Node(val)
+                        return
+                else:
+                    if node.right:
+                        node = node.right
+                    else:
+                        node.right = Node(val)
+                        return
+tree = BinarySearchTree()
+t = int(input())
+
+arr = list(map(int, input().split()))
+
+for i in range(t):
+    tree.insert(arr[i])
+
+preOrder(tree.root)
