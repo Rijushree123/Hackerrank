@@ -13,3 +13,4 @@ def fizzBuzz(n):
 n=int(input())
 if(n>0 and n<2*pow(10,5)):
     fizzBuzz(n)
+#by Rijushree
