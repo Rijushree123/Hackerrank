@@ -1,0 +1,18 @@
+                                                                      Python
+n, k = map(int, input().split())
+x = n * k % 9
+print(x if x else 9)
+
+                                                                       Java
+import java.util.*;
+import java.math.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        String arr[] = new Scanner(System.in).nextLine().split("[ ]");
+        int output = (Integer.parseInt(arr[1])*new BigInteger(arr[0]).remainder(new BigInteger("9")).intValue())%9;
+        System.out.println(output == 0 ? 9:output);
+    }
+}
+
