@@ -1,0 +1,61 @@
+from collections import Counter
+def checkMagazine(magazine, note):
+    flag=True
+    c1=Counter(magazine)
+    c2=Counter(note)
+    for k,v in c2.items():
+        if k in c1 and c1[k]>=v:
+            continue
+        else:
+            flag=False
+            break
+    if flag:
+        print("Yes")
+    else:
+        print("No")
+        
+    
+
+if __name__ == '__main__':
+    mn = input().split()
+
+    m = int(mn[0])
+
+    n = int(mn[1])
+
+    magazine = input().rstrip().split()
+
+    note = input().rstrip().split()
+
+    checkMagazine(magazine, note)
+
+
+                                                                                        Shortcut
+
+
+
+
+from collections import Counter
+def checkMagazine(magazine, note):
+    flag=True
+    c1=Counter(magazine)
+    c2=Counter(note)
+    if c2-c1=={}:
+        print("Yes")
+    else:
+        print("No")
+        
+    
+
+if __name__ == '__main__':
+    mn = input().split()
+
+    m = int(mn[0])
+
+    n = int(mn[1])
+
+    magazine = input().rstrip().split()
+
+    note = input().rstrip().split()
+
+    checkMagazine(magazine, note)
