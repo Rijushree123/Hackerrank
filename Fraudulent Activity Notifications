@@ -1,0 +1,19 @@
+                                                                                            PYTHON
+import bisect
+n,d=map(int,input().split())
+exp=list(map(int,input().split()))
+arr=sorted(exp[0:d])
+m=d//2
+c=0
+def med(arr,d,m):
+    if d%2==0:
+        return sum(arr[m-1:m+1])/2
+    else:
+        return arr[m]
+for i in range(d,n):
+    
+    if exp[i]>= 2*med(arr,d,m):
+        c+=1
+    del arr[bisect.bisect_left(arr,exp[i-d])]
+    bisect.insort(arr,exp[i])
+print(c)
