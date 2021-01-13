@@ -1,0 +1,37 @@
+#!/bin/python3
+
+import math
+import os
+import random
+import re
+import sys
+
+# Complete the countTriplets function below.
+def countTriplets(arr, r):
+    count=0
+    bf={}
+    af={}
+    for v in arr:
+        if v in af:
+            af[v]+=1
+        else:
+            af[v]=1
+    for v in arr:
+        af[v]-=1
+        if v//r in bf and v%r==0 and v*r in af:
+            count+=bf[v//r]*af[v*r]
+        if v in bf:
+            bf[v]+=1
+        else:
+            bf[v]=1
+    return count
+
+
+
+nr = input().rstrip().split()
+n = int(nr[0])
+r = int(nr[1])
+arr = list(map(int, input().rstrip().split()))
+ans = countTriplets(arr, r)
+print(str(ans) + '\n')
+
