@@ -39,3 +39,18 @@ public class Solution {
         scanner.close();
     }
 }
+  
+  
+  
+  
+                                                                                      Python
+  
+def flippingBits(n):
+    max=pow(2,32)-1
+    return max^n
+
+q = int(input())
+for q_itr in range(q):
+    n = int(input())
+    result = flippingBits(n)
+    print(str(result) + '\n')
