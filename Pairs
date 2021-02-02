@@ -1,0 +1,56 @@
+                                                                                        Java
+                                                                                        import java.util.*;
+import java.io.*;
+import java.math.*;
+public class Pairs_hackerank
+{
+    public static void main(String args[])
+    {
+        Scanner sc=new Scanner(System.in);
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        String[] nk = sc.nextLine().split(" ");
+        int n = Integer.parseInt(nk[0]);
+        int k = Integer.parseInt(nk[1]);
+        int arr[]=new int[n];
+        int d=0;
+        int count=0;
+        
+        for(int i=0;i<n;i++)
+        {
+            arr[i]=sc.nextInt();
+        }
+        Set<Integer> value=new HashSet<Integer>();
+        for(int i:arr)
+        {
+            value.add(i);
+        }
+        for(int i:value)
+        {
+            if (value.contains(i+k))
+            {
+                ++count;
+            }
+        }
+        System.out.println(count);
+    }
+}
+        
+
+
+                                                                                        Python
+def pairs(a,k):
+
+    #a contains array of numbers and k is the value of difference
+    #put all values into a dictionary. If it exists,extract
+    myDict = {item : 1 for index, item in enumerate(a)}        
+    count = 0
+    for each in myDict:
+        if each + k in myDict:
+            count += 1
+    print(count)
+    
+a =list(map(int, input().strip().split(" ")))
+a_size=a[0]
+k=a[1]
+b = map(int, input().strip().split(" "))
+pairs(b,k)
