@@ -54,3 +54,4 @@ a_size=a[0]
 k=a[1]
 b = map(int, input().strip().split(" "))
 pairs(b,k)
+#Rijushree Guha
