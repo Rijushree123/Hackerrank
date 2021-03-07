@@ -1,0 +1,14 @@
+def diagonalDifference(arr,n):
+    c=n-1
+    sum1=sum2=0
+    for i in range(0,n):
+        sum1+=arr[i][i]
+        sum2+=arr[i][c]
+        c-=1
+    return abs(sum1-sum2)
+n = int(input().strip())
+arr = []
+for _ in range(n):
+    arr.append(list(map(int, input().rstrip().split())))
+result = diagonalDifference(arr,n)
+print(str(result)+'\n')
