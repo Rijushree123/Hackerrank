@@ -54,3 +54,4 @@ for q_itr in range(q):
     n = int(input())
     result = flippingBits(n)
     print(str(result) + '\n')
+#Rijushree
